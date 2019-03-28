@@ -16,42 +16,35 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <nav className="ph3 ph5-ns pv4">
-          <div className="">
-            <Link
-              to="/"
-              className="link gray f5 f4-ns dib mr3 fl hover-bg-light-gray"
-            >
-              Home
-            </Link>
-            <Link
-              to="/genres"
-              className="link gray f5 f4-ns dib fl mr3 hover-bg-light-gray"
-            >
-              Genres
-            </Link>
+        <nav className="ui fixed inverted menu">
+          <Link to="/" className="active item">
+            Home
+          </Link>
+          <Link to="/genres" className="item">
+            Genres
+          </Link>
+          <div className="right menu">
             <form
               method="GET"
               action="/search"
               onSubmit={this.handleSearchSubmit}
-              className="fr"
+              className="item"
             >
-              <input
-                type="text"
-                name="query"
-                value={this.props.store.query}
-                onChange={this.handleChange}
-                className="mr2 ba br2 b--light-gray"
-              />
-              <input
-                type="submit"
-                value="Search"
-                className="f6 ttu br-pill ba bw1 ph3 pv1 gray hover-bg-light-gray pointer shadow-3 b"
-              />
+              <div className="ui action input">
+                <input
+                  type="text"
+                  name="query"
+                  value={this.props.store.query}
+                  onChange={this.handleChange}
+                  className=""
+                />
+                <button className="ui button" type="submit">
+                  Search
+                </button>
+              </div>
             </form>
           </div>
         </nav>
-        <hr />
       </div>
     );
   }

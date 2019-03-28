@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="ui container">
           <Navigation store={store} />
           <Switch>
             <Route exact path="/" render={() => <Homepage store={store} />} />
@@ -43,7 +43,7 @@ class App extends Component {
             />
             <Route
               path="/genres"
-              render={props => <GenresList {...props} store={store} />}
+              render={props => <GenresList store={store} />}
             />
           </Switch>
         </div>

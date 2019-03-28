@@ -10,7 +10,7 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div className="ph3 ph5-ns">
+      <div className="ui container">
         <div className="mb2 cf w-100 mb4">
           <h2 className="fl w-20 mv3">Trending Films</h2>
           <div
