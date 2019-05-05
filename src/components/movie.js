@@ -31,10 +31,7 @@ class Movie extends Component {
     const { genres } = this.props.store.currentMovie;
     if (genres.length > 0) {
       return genres.map(genre => (
-        <span
-          key={genre.id}
-          className="ttu f6 mr1 shadow-3 mv3 ttu br-pill ba bw1 ph3 pv1 gray hover-bg-light-gray pointer grow b"
-        >
+        <span key={genre.id} className="ttu f6 mr2 mv3 gray">
           {genre.name}
         </span>
       ));

@@ -13,12 +13,6 @@ class GenresList extends Component {
         <div className="ph3 ph5-ns">
           <div className="mb2 cf w-100 mb4">
             <h2 className="fl w-20 mv3">Genres</h2>
-            <div
-              className="fr f6 mv3 ttu br-pill ba bw1 ph3 pv1 gray hover-bg-light-gray pointer grow shadow-3 b"
-              onClick={() => this.props.store.sortMoviesByRating()}
-            >
-              Sort by rating
-            </div>
           </div>
           <div>
             {this.props.store.genresList.map(genre => {

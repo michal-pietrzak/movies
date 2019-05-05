@@ -8,6 +8,7 @@ import Homepage from "./components/homepage";
 import Navigation from "./components/navigation";
 import SearchResults from "./components/searchresults";
 import GenresList from "./components/genreslist";
+import MyHistory from "./components/myhistory";
 
 // const routes = [
 //   {
@@ -24,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="ui container">
+        <div className="w-100 center">
           <Navigation store={store} />
           <Switch>
             <Route exact path="/" render={() => <Homepage store={store} />} />
@@ -44,6 +45,10 @@ class App extends Component {
             <Route
               path="/genres"
               render={props => <GenresList store={store} />}
+            />
+            <Route
+              path="/myhistory"
+              render={props => <MyHistory store={store} />}
             />
           </Switch>
         </div>

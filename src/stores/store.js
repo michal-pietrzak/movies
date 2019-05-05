@@ -16,6 +16,12 @@ class Store {
   @observable searchResults = [];
   @observable genresList = [];
 
+  compare(a, b) {
+    if (a.vote_average > b.vote_average) return -1;
+    if (a.vote_average < b.vote_average) return 1;
+    return 0;
+  }
+
   @action
   fetchMovie(id) {
     movieDB.getMovieById(id).then(movie => {
@@ -44,24 +50,20 @@ class Store {
 
   @action
   sortMoviesByRating() {
-    const compare = (a, b) => {
-      if (a.vote_average > b.vote_average) return -1;
-      if (a.vote_average < b.vote_average) return 1;
-      return 0;
-    };
-    const sorted = this.movieList.sort(compare);
+    const sorted = this.movieList.sort(this.compare);
     this.movieList = sorted;
   }
 
   @action
   sortSearchByRating() {
-    const compare = (a, b) => {
-      if (a.vote_average > b.vote_average) return -1;
-      if (a.vote_average < b.vote_average) return 1;
-      return 0;
-    };
-    const sorted = this.searchResults.sort(compare);
+    const sorted = this.searchResults.sort(this.compare);
     this.searchResults = sorted;
+  }
+
+  @action
+  sortMyHistoryByRating() {
+    const sorted = this.movieHistory.sort(this.compare);
+    this.movieHistory = sorted;
   }
 
   @action
@@ -81,6 +83,18 @@ class Store {
     movieDB.getGenresList().then(genres => {
       this.genresList = genres;
     });
+  }
+
+  @action
+  purgeHistory() {
+    const movieIds = {};
+    const purged = this.movieHistory.map(movie => {
+      if (!movieIds[movie.id]) movieIds[movie.id] = 0;
+      movieIds[movie.id]++;
+      if (movieIds[movie.id] < 2) return movie;
+      return null;
+    });
+    this.movieHistory = purged.filter(movie => movie);
   }
 }
 
